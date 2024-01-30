@@ -48,7 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
     String selectedPage = '';
     return Scaffold(
       appBar: AppBar(
-        systemOverlayStyle: SystemUiOverlayStyle(
+        systemOverlayStyle: const SystemUiOverlayStyle(
           // Status bar color
           statusBarColor: Colors.black,
 
@@ -74,7 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
           padding: EdgeInsets.zero,
           children: <Widget>[
             Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(bottomRight: Radius.circular(20)),
               ),
@@ -85,8 +85,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Image.asset('assets/images/evento.png'),
-                    SizedBox(height: 20,),
-                    Text(
+                    const SizedBox(height: 20,),
+                    const Text(
                       'Avijit Acharjee',
                       style: TextStyle(
                         color: Colors.black,
@@ -95,7 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                       textAlign: TextAlign.left,
                     ),
-                    Text(
+                    const Text(
                       'avijitach@gmail.com',
                       style: TextStyle(
                         color: Colors.black,
