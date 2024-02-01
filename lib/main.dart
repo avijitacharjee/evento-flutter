@@ -18,7 +18,9 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Evento'),
+      home: Container(
+          child: MyHomePage(title: 'Evento')
+      ),
     );
   }
 }
@@ -34,6 +36,15 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  int _selectedIndex = 0;
+  static const optionStyle = TextStyle(fontSize: 20,color: Colors.black);
+  static final List<Widget> _widgetOptions = [Home(),Bar()];
+  void onItemTapped(int index){
+    setState(() {
+      _selectedIndex = index;
+    });
+    Navigator.pop(context);
+  }
 
   void _incrementCounter() {
     setState(() {
@@ -113,14 +124,15 @@ class _MyHomePageState extends State<MyHomePage> {
             ListTile(
               leading: const Icon(Icons.home),
               title: const Text('Home'),
+              onTap: () {
+                onItemTapped(0);
+              },
             ),
             ListTile(
               leading: const Icon(Icons.event),
               title: const Text('Events'),
               onTap: () {
-                setState(() {
-                  selectedPage = 'Messages';
-                });
+                onItemTapped(1);
               },
             ),
             ListTile(
@@ -164,7 +176,16 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      body: Expanded(
+      body: _widgetOptions[_selectedIndex]
+
+    );
+  }
+}
+class Home extends StatelessWidget {
+  const Home({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
         child: SingleChildScrollView(
           child: Container(
             width: double.infinity,
@@ -172,7 +193,7 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Column(
               children: [
                 Container(
-                  padding: EdgeInsetsDirectional.all(20),
+                  padding: const EdgeInsetsDirectional.all(20),
                   height: 300,
                   color: const Color(0xff272a2f),
                   child: Column(
@@ -392,7 +413,36 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
         ),
-      )
+      );
+  }
+}
+/*class Foo extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      primary: true,
+      resizeToAvoidBottomInset: false,
+      appBar: new AppBar(title: new Text('foo')),
+      floatingActionButton: new FloatingActionButton(
+        child: new Icon(Icons.space_bar),
+        onPressed: () {
+          Navigator.of(context).push(new MaterialPageRoute(
+            builder: (_) => new Bar(),
+          ));
+        },
+      ),
     );
   }
+}*/
+
+class Bar extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      primary: true,
+      resizeToAvoidBottomInset: false,
+      appBar: new AppBar(title: new Text('bar')),
+    );
+  }
+
 }
