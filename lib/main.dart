@@ -2,6 +2,7 @@ import 'package:evento/pages/eventSingle.dart';
 import 'package:evento/pages/eventsPage.dart';
 import 'package:evento/pages/homePage.dart';
 import 'package:evento/pages/orderConfirmationPage.dart';
+import 'package:evento/pages/thanksPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -40,7 +41,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
-  static final List<Widget> _widgetOptions = [const Home(),Events(),EventSingle(),OrderConfirmationPage()];
+  static final List<Widget> _widgetOptions = [const Home(),Events(),EventSingle(),OrderConfirmationPage(),ThanksPage()];
   void onItemTapped(int index){
     setState(() {
       _selectedIndex = index;
@@ -154,7 +155,7 @@ class _MyHomePageState extends State<MyHomePage> {
               title: const Text('Settings'),
               onTap: () {
                 setState(() {
-                  selectedPage = 'Settings';
+                  onItemTapped(4);
                 });
               },
             ),
