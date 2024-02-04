@@ -1,3 +1,4 @@
+import 'package:evento/utils/colors.dart';
 import 'package:flutter/material.dart';
 
 class Events extends StatelessWidget{
@@ -7,7 +8,7 @@ class Events extends StatelessWidget{
       child: SingleChildScrollView(
         child: Container(
           width: double.infinity,
-          color: const Color(0xff111315),
+          color: UtilColors.backgroundDark,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
