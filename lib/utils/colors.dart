@@ -6,4 +6,5 @@ class UtilColors {
   static const cardColor1 = Color(0xff6f767e);
   static const cardColor = Color(0xff1a1d1f);
   static const inputFieldColor = Color(0xff272b30);
+  static const inputFieldColorWhite = Color(0xffe8f0fe);
 }

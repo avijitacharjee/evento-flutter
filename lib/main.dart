@@ -1,8 +1,11 @@
 import 'package:evento/pages/eventSingle.dart';
 import 'package:evento/pages/eventsPage.dart';
 import 'package:evento/pages/homePage.dart';
+import 'package:evento/pages/login.dart';
 import 'package:evento/pages/orderConfirmationPage.dart';
+import 'package:evento/pages/signUp.dart';
 import 'package:evento/pages/thanksPage.dart';
+import 'package:evento/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -24,6 +27,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: Container(
+          color: UtilColors.backgroundDark,
           child: MyHomePage(title: 'Evento')
       ),
     );
@@ -41,8 +45,16 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
-  static final List<Widget> _widgetOptions = [const Home(),Events(),EventSingle(),OrderConfirmationPage(),ThanksPage()];
-  void onItemTapped(int index){
+  static final List<Widget> _widgetOptions = [
+    Home(),
+    Events(),
+    EventSingle(),
+    OrderConfirmationPage(),
+    ThanksPage(),
+    Login(),
+    SignUp()
+  ];
+  void onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
@@ -53,129 +65,128 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     String selectedPage = '';
     return Scaffold(
-      appBar: AppBar(
-        systemOverlayStyle: const SystemUiOverlayStyle(
-          // Status bar color
-          statusBarColor: Colors.black,
+        appBar: AppBar(
+          systemOverlayStyle: const SystemUiOverlayStyle(
+            // Status bar color
+            statusBarColor: Colors.black,
 
-          // Status bar brightness (optional)
-          statusBarIconBrightness: Brightness.light, // For Android (dark icons)
-          statusBarBrightness: Brightness.light, // For iOS (dark icons)
-        ),
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: const Color(0xff1a1d1f),
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Row(
-          children: [
-            Text(
-              widget.title,
-              style: TextStyle(color: Colors.white),
-            ),
-          ],
-        ),
-        iconTheme: IconThemeData(color: Colors.white),
-      ),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            Container(
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius:
-                    BorderRadius.only(bottomRight: Radius.circular(20)),
+            // Status bar brightness (optional)
+            statusBarIconBrightness:
+                Brightness.light, // For Android (dark icons)
+            statusBarBrightness: Brightness.light, // For iOS (dark icons)
+          ),
+          // TRY THIS: Try changing the color here to a specific color (to
+          // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
+          // change color while the other colors stay the same.
+          backgroundColor: const Color(0xff1a1d1f),
+          // Here we take the value from the MyHomePage object that was created by
+          // the App.build method, and use it to set our appbar title.
+          title: Row(
+            children: [
+              Text(
+                widget.title,
+                style: TextStyle(color: Colors.white),
               ),
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(20, 40, 0, 20),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Image.asset('assets/images/evento.png'),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    const Text(
-                      'Avijit Acharjee',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold),
-                      textAlign: TextAlign.left,
-                    ),
-                    const Text(
-                      'avijitach@gmail.com',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 15,
+            ],
+          ),
+          iconTheme: IconThemeData(color: Colors.white),
+        ),
+        drawer: Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: <Widget>[
+              Container(
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius:
+                      BorderRadius.only(bottomRight: Radius.circular(20)),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 40, 0, 20),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Image.asset('assets/images/evento.png'),
+                      const SizedBox(
+                        height: 20,
                       ),
-                      textAlign: TextAlign.left,
-                    ),
-                  ],
+                      const Text(
+                        'Avijit Acharjee',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold),
+                        textAlign: TextAlign.left,
+                      ),
+                      const Text(
+                        'avijitach@gmail.com',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 15,
+                        ),
+                        textAlign: TextAlign.left,
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-            ListTile(
-              leading: const Icon(Icons.home),
-              title: const Text('Home'),
-              onTap: () {
-                onItemTapped(0);
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.event),
-              title: const Text('Events'),
-              onTap: () {
-                onItemTapped(1);
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.feed),
-              title: const Text('Blog'),
-              onTap: () {
-                setState(() {
+              ListTile(
+                leading: const Icon(Icons.home),
+                title: const Text('Home'),
+                onTap: () {
+                  onItemTapped(0);
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.event),
+                title: const Text('Events'),
+                onTap: () {
+                  onItemTapped(1);
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.feed),
+                title: const Text('Blog'),
+                onTap: () {
                   onItemTapped(2);
-                });
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.account_circle),
-              title: const Text('Profile'),
-              onTap: () {
-                setState(() {
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.account_circle),
+                title: const Text('Profile'),
+                onTap: () {
                   onItemTapped(3);
-                });
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.settings),
-              title: const Text('Settings'),
-              onTap: () {
-                setState(() {
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.settings),
+                title: const Text('Settings'),
+                onTap: () {
                   onItemTapped(4);
-                });
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.share),
-              title: const Text("Share"),
-            ),
-            const Divider(
-              height: 1,
-            ),
-            const ListTile(
-              leading: Icon(Icons.logout),
-              title: const Text('Log out'),
-            )
-          ],
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.share),
+                title: const Text("Share"),
+                onTap: () {
+                  onItemTapped(5);
+                },
+              ),
+              const Divider(
+                height: 1,
+              ),
+              ListTile(
+                leading: Icon(Icons.logout),
+                title: Text('Log out'),
+                onTap: () {
+                  onItemTapped(6);
+                },
+              )
+            ],
+          ),
         ),
-      ),
-      body: _widgetOptions[_selectedIndex]
-
-    );
+        body: _widgetOptions[_selectedIndex]);
   }
 }
 /*class Foo extends StatelessWidget {
@@ -206,5 +217,4 @@ class Bar extends StatelessWidget {
       appBar: new AppBar(title: new Text('bar')),
     );
   }
-
 }
